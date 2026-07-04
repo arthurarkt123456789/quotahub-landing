@@ -1162,5 +1162,36 @@
   }
 </script>
 
+<!-- Cookie Banner -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#16181C;border-top:1px solid #262A2F;padding:20px 24px;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;">
+    <p style="color:#9EA0A0;font-family:Inter,sans-serif;font-size:13px;margin:0;flex:1;min-width:260px;line-height:1.6;">
+      This site uses cookies to analyse traffic and improve your experience. Under Italian law (Garante Privacy guidelines) and GDPR, your consent is required for non-essential cookies.
+      <a href="/privacy.html" style="color:#33566E;text-decoration:underline;margin-left:4px;">Privacy Policy</a>
+    </p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button onclick="cookieChoice(false)" style="font-family:Inter,sans-serif;font-size:13px;padding:9px 20px;border:1px solid #444850;background:transparent;color:#9EA0A0;border-radius:4px;cursor:pointer;">
+        Reject non-essential
+      </button>
+      <button onclick="cookieChoice(true)" style="font-family:Inter,sans-serif;font-size:13px;padding:9px 20px;border:none;background:#33566E;color:#fff;border-radius:4px;cursor:pointer;">
+        Accept all
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (!localStorage.getItem('cookie_consent')) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    }
+  })();
+
+  function cookieChoice(accepted) {
+    localStorage.setItem('cookie_consent', accepted ? 'accepted' : 'rejected');
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
