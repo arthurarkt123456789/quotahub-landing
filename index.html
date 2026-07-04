@@ -1124,6 +1124,8 @@
   }
 
   /* Contact form */
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby15BAM3-aVz_86GA-tjqI0BtYpSf_C1ILM1JdCEWnOH7YY8hxYdibCfaDMXslN0yZ6fw/exec";
+
   function submitForm(e) {
     e.preventDefault();
     const form    = document.getElementById('cform');
@@ -1138,11 +1140,25 @@
     if (!valid) return;
     btn.textContent = 'Sending…';
     btn.disabled = true;
-    setTimeout(() => {
+    const payload = {
+      name:    document.getElementById('f-name').value.trim(),
+      email:   document.getElementById('f-email').value.trim(),
+      company: document.getElementById('f-company').value.trim(),
+      message: document.getElementById('f-message').value.trim(),
+    };
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+    .then(() => {
       form.querySelectorAll('input, textarea').forEach(el => el.value = '');
       btn.style.display = 'none';
       success.classList.remove('hidden');
-    }, 1000);
+    })
+    .catch(() => {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    });
   }
 </script>
 
