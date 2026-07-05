@@ -6,6 +6,20 @@
   <title>Quota Hub: Build a Sales Engine That Goes Beyond the Goal</title>
   <meta name="description" content="Quota Hub helps startups and SMEs build structured, empathy-driven sales functions. Strategy, CRM, coaching, and commercial advisory.">
 
+  <!-- Google Analytics (Consent Mode) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKXKBHGNNS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-XKXKBHGNNS');
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1188,27 +1202,18 @@
     }
   })();
 
-  function loadGA() {
-    if (document.getElementById('ga-script')) return;
-    const s = document.createElement('script');
-    s.id = 'ga-script';
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XKXKBHGNNS';
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-XKXKBHGNNS');
-  }
-
   function cookieChoice(accepted) {
     localStorage.setItem('cookie_consent', accepted ? 'accepted' : 'rejected');
     document.getElementById('cookie-banner').style.display = 'none';
-    if (accepted) loadGA();
+    gtag('consent', 'update', {
+      analytics_storage: accepted ? 'granted' : 'denied',
+      ad_storage: 'denied'
+    });
   }
 
-  if (localStorage.getItem('cookie_consent') === 'accepted') loadGA();
+  if (localStorage.getItem('cookie_consent') === 'accepted') {
+    gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied' });
+  }
 </script>
 
 </body>
