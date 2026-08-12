@@ -11,6 +11,10 @@
   <link rel="alternate" hreflang="it" href="https://quotahub.it/it.html">
   <link rel="alternate" hreflang="x-default" href="https://quotahub.it/">
   <link rel="icon" type="image/png" href="/favicon.png">
+  <script>
+    if (location.protocol === 'http:') location.replace('https:' + location.href.slice(5));
+    if (location.pathname === '/index.html') history.replaceState(null, '', '/');
+  </script>
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- Google Analytics (Consent Mode) -->
