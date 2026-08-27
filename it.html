@@ -26,6 +26,7 @@
     });
     gtag('js', new Date());
     gtag('config', 'G-XKXKBHGNNS');
+    gtag('config', 'AW-17452501333');
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1187,6 +1188,13 @@
       form.querySelectorAll('input, textarea').forEach(el => el.value = '');
       btn.style.display = 'none';
       success.classList.remove('hidden');
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17452501333/r9dgCIW6_OgcENWSgIJB',
+          'value': 1.0,
+          'currency': 'EUR'
+        });
+      }
     })
     .catch(() => {
       btn.textContent = 'Riprova';
