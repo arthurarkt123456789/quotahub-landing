@@ -202,10 +202,22 @@
 
 <!-- ═══ 01 HERO — cinematic dark ═══ -->
 <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <video autoplay muted loop playsinline aria-hidden="true"
+  <video id="hero-video" autoplay muted playsinline aria-hidden="true"
          class="absolute inset-0 w-full h-full object-cover">
-    <source src="hero-bg.mp4" type="video/mp4">
+    <source src="hero-handshake.mp4" type="video/mp4">
   </video>
+  <script>
+    (function(){
+      var v=document.getElementById('hero-video');
+      var srcs=['hero-handshake.mp4','hero-hands.mp4'];
+      var i=0;
+      v.addEventListener('ended',function(){
+        i=(i+1)%srcs.length;
+        v.src=srcs[i];
+        v.play();
+      });
+    })();
+  </script>
   <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
   <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 text-center pt-28 pb-20">
     <div class="reveal flex items-center justify-center gap-3 mb-8">
