@@ -1245,12 +1245,12 @@
     document.getElementById('cookie-banner').style.display = 'none';
     gtag('consent', 'update', {
       analytics_storage: accepted ? 'granted' : 'denied',
-      ad_storage: 'denied'
+      ad_storage: accepted ? 'granted' : 'denied'
     });
   }
 
   if (localStorage.getItem('cookie_consent') === 'accepted') {
-    gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied' });
+    gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
   }
 </script>
 
